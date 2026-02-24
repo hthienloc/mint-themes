@@ -1579,8 +1579,8 @@ pathbar  > button {
 //
 columnview.view,
 treeview.view {
-  border-left-color: transparentize($fg_color, 0.65);   // this is actually the tree lines color,
-  border-top-color: transparentize($fg_color, 0.65);    // while this is the grid lines color, better then nothing
+  border-left-color: if($variant == 'dark', transparentize($fg_color, 0.45), transparentize($fg_color, 0.65));   // this is actually the tree lines color,
+  border-top-color: if($variant == 'dark', transparentize($fg_color, 0.45), transparentize($fg_color, 0.65));    // while this is the grid lines color, better then nothing
 
   > rubberband { @extend rubberband; }                 // to avoid borders being overridden by the previously set props
 
@@ -2641,7 +2641,7 @@ scrolledwindow {
 
 //vbox and hbox separators
 separator {
-  background-color: transparentize(black, 0.9);
+  background-color: if($variant == 'dark', transparentize($fg_color, 0.85), transparentize(black, 0.9));
   min-width: 1px;
   min-height: 1px;
 }
@@ -2661,11 +2661,11 @@ list {
 
   &.horizontal row.separator,
   &.separators.horizontal > row:not(.separator) {
-    border-left: 1px solid transparentize(black, 0.9);
+    border-left: 1px solid if($variant == 'dark', transparentize($fg_color, 0.85), transparentize(black, 0.9));
   }
   &:not(.horizontal) row.separator,
   &.separators:not(.horizontal) > row:not(.separator) {
-    border-bottom: 1px solid transparentize(black, 0.9);
+    border-bottom: 1px solid if($variant == 'dark', transparentize($fg_color, 0.85), transparentize(black, 0.9));
   }
 }
 
@@ -3169,7 +3169,7 @@ paned {
     -gtk-icon-source: none;
     border-style: none;
     background-color: transparent;
-    background-image: _solid($borders_color);
+    background-image: if($variant == 'dark', _solid(lighten($borders_color, 12%)), _solid($borders_color));
     background-size: 1px 1px;
 
     &:selected { background-image: _solid($selected_bg_color); }
